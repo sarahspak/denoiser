@@ -13,3 +13,11 @@ build
 *.th
 launch_master.sh
 conf/dset/master.yaml
+**.json
+**.csv
+.jupyter**
+.local/**
+.ipython**
+.ipynb_checkpoints**
+.config**
+ai_platform_notebook_defaults/**
