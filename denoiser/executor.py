@@ -43,7 +43,9 @@ class ChildrenManager:
                     else:
                         self.children.remove(child)
                         if exitcode:
-                            logger.error(f"Worker {child.rank} died, killing all workers")
+                            logger.error(
+                                f"Worker {child.rank} died, killing all workers"
+                            )
                             self.failed = True
         except KeyboardInterrupt:
             logger.error("Received keyboard interrupt, trying to kill all workers.")
@@ -56,11 +58,14 @@ class ChildrenManager:
 
 def start_ddp_workers():
     import torch as th
+    import torch_xla
+    import torch_xla.core.xla_model as xm
 
     world_size = th.cuda.device_count()
     if not world_size:
         logger.error(
-            "DDP is only available on GPU. Make sure GPUs are properly configured with cuda.")
+            "DDP is only available on GPU. Make sure GPUs are properly configured with cuda."
+        )
         sys.exit(1)
     logger.info(f"Starting {world_size} worker processes for DDP.")
     with ChildrenManager() as manager:
@@ -69,11 +74,15 @@ def start_ddp_workers():
             argv = list(sys.argv)
             argv += [f"world_size={world_size}", f"rank={rank}"]
             if rank > 0:
-                kwargs['stdin'] = sp.DEVNULL
-                kwargs['stdout'] = sp.DEVNULL
-                kwargs['stderr'] = sp.DEVNULL
+                kwargs["stdin"] = sp.DEVNULL
+                kwargs["stdout"] = sp.DEVNULL
+                kwargs["stderr"] = sp.DEVNULL
                 log = utils.HydraConfig().hydra.job_logging.handlers.file.filename
                 log += f".{rank}"
                 argv.append("hydra.job_logging.handlers.file.filename=" + log)
-            manager.add(sp.Popen([sys.executable] + argv, cwd=utils.get_original_cwd(), **kwargs))
+            manager.add(
+                sp.Popen(
+                    [sys.executable] + argv, cwd=utils.get_original_cwd(), **kwargs
+                )
+            )
     sys.exit(int(manager.failed))
