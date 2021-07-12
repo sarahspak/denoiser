@@ -19,3 +19,6 @@ conf/dset/master.yaml
 .ipynb_checkpoints**
 .config**
 ai_platform_notebook_defaults/**
+.cache/**
+.python_history**
+.docker/**
