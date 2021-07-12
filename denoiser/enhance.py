@@ -86,7 +86,7 @@ def write(wav, filename, sr=16_000):
 
 def get_dataset(args):
     if hasattr(args, 'dset'):
-        paths = args.dset
+        paths = args.dset.dset
     else:
         paths = args
     if paths.noisy_json:
