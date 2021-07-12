@@ -13,6 +13,8 @@ import os
 import sys
 
 import torch
+import torch_xla
+import torch_xla.core.xla_model as xm
 import torchaudio
 
 from .audio import Audioset, find_audio_files
