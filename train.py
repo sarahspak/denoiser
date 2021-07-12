@@ -10,6 +10,10 @@ import logging
 import os
 
 import hydra
+import torch_xla
+import torch_xla.core.xla_model as xm
+import torch_xla.distributed.parallel_loader as pl
+import torch_xla.distributed.xla_multiprocessing as xmp
 from omegaconf import DictConfig
 from denoiser.executor import start_ddp_workers
 
@@ -122,3 +126,4 @@ def main(args):
 
 if __name__ == "__main__":
     main()
+    # xmp.spawn(_mp_fn, args=())
