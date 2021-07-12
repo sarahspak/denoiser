@@ -26,3 +26,5 @@ gcloud notebooks instances create $INSTANCE_NAME \
   --vm-image-family=$VM_IMAGE_FAMILY \
   --machine-type=$MACHINE_TYPE --location=$LOCATION
 ```
+
+then visit [here](https://console.cloud.google.com/ai-platform/notebooks/list/instances?authuser=1) to see the freshly created notebook
