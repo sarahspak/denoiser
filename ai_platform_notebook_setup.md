@@ -1,5 +1,7 @@
 # setup an ai platform notebook
 
+easiest way is to follow [these](https://cloud.google.com/deep-learning-vm/docs/pytorch_start_instance) instructions for pytorch specifically
+
 ```
 gcloud config set project spak-hacks
 ```
