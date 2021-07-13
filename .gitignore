@@ -22,3 +22,5 @@ ai_platform_notebook_defaults/**
 .cache/**
 .python_history**
 .docker/**
+MNIST/**
+.bash_history
