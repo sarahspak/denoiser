@@ -7,6 +7,8 @@
 
 import numpy as np
 import torch
+import torch_xla
+import torch_xla.core.xla_model as xm
 from torch.nn import functional as F
 
 
@@ -15,7 +17,7 @@ def hz_to_mel(f):
 
 
 def mel_to_hz(m):
-    return 700 * (10**(m / 2595) - 1)
+    return 700 * (10 ** (m / 2595) - 1)
 
 
 def mel_frequencies(n_mels, fmin, fmax):
